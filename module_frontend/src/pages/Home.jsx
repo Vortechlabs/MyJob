@@ -5,6 +5,7 @@ import Microsoft from '../assets/images/logo/Microsoft.png'
 import google from '../assets/images/logo/google.png'
 import alphabeth from '../assets/images/logo/alphabeth.png'
 import services from '../assets/images/services.jpeg'
+import { Link } from 'react-router-dom'
 
 function Home() {
   return (
@@ -14,8 +15,8 @@ function Home() {
         <p className='lg:text-6xl text-5xl'>Find Your Future Career in MyJob</p>
         <p className='text-lg pt-2'>Aliquip enim quis dolore est amet deserunt reprehenderit aliqua consectetur exercitation quis elit enim.</p>
         <div className='flex gap-5 pt-2'>
-          <button className='ring-2 ring-indigo-600'>Lamar Pekerjaan</button>
-          <button className='bg-indigo-600 text-white hover:ring-2'>Buat pekerjaan</button>
+          <Link to={'/Jobs'}><button className='ring-2 ring-indigo-600'>Lamar Pekerjaan</button></Link>
+          <Link to={'/Reqruiters'}><button className='bg-indigo-600 text-white hover:ring-2'>Buat pekerjaan</button></Link>
         </div>
         
         <div className='max-h-24 grid grid-cols-2 lg:grid-cols-5 mb-10 gap-5 pt-8'>
@@ -36,96 +37,100 @@ function Home() {
           <p className='text-center'>Find the job that's perfect for you. about 500+ ne jobs everyday.</p>
         </div>
 
-        <div className='grid grid-cols-4 gap-y-5 gap-x-5 pt-5'>
+        <div className='grid grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-5 pt-5'>
 
-            <div className="flex items-center gap-4 bg-indigo-600  text-white rounded-lg">
+
+            <div className="flex items-center gap-4 bg-white  text-black rounded-lg">
               
               <img src={services} alt="avatar" className='rounded-s-lg ring-gray-400 h-24 w-24 object-cover'/>
               <div>
                 <h6 >Services</h6>
-                <p className="font-normal text-xs dark:text-gray-200">
+                <p className="font-normal text-xs ">
                   33+ available
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-indigo-600  text-white rounded-lg">
+            <div className="flex items-center gap-4 bg-white  text-black rounded-lg">
               
               <img src={services} alt="avatar" className='rounded-s-lg ring-gray-400 h-24 w-24 object-cover'/>
               <div>
                 <h6 >Services</h6>
-                <p className="font-normal text-xs dark:text-gray-200">
+                <p className="font-normal text-xs ">
                   33+ available
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-indigo-600  text-white rounded-lg">
+            <div className="flex items-center gap-4 bg-white  text-black rounded-lg">
               
               <img src={services} alt="avatar" className='rounded-s-lg ring-gray-400 h-24 w-24 object-cover'/>
               <div>
                 <h6 >Services</h6>
-                <p className="font-normal text-xs dark:text-gray-200">
+                <p className="font-normal text-xs ">
                   33+ available
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-indigo-600  text-white rounded-lg">
+            <div className="flex items-center gap-4 bg-white  text-black rounded-lg">
               
               <img src={services} alt="avatar" className='rounded-s-lg ring-gray-400 h-24 w-24 object-cover'/>
               <div>
                 <h6 >Services</h6>
-                <p className="font-normal text-xs dark:text-gray-200">
+                <p className="font-normal text-xs ">
                   33+ available
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-indigo-600  text-white rounded-lg">
+            <div className="flex items-center gap-4 bg-white  text-black rounded-lg">
               
               <img src={services} alt="avatar" className='rounded-s-lg ring-gray-400 h-24 w-24 object-cover'/>
               <div>
                 <h6 >Services</h6>
-                <p className="font-normal text-xs dark:text-gray-200">
+                <p className="font-normal text-xs ">
                   33+ available
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-indigo-600  text-white rounded-lg">
+            <div className="flex items-center gap-4 bg-white  text-black rounded-lg">
               
               <img src={services} alt="avatar" className='rounded-s-lg ring-gray-400 h-24 w-24 object-cover'/>
               <div>
                 <h6 >Services</h6>
-                <p className="font-normal text-xs dark:text-gray-200">
+                <p className="font-normal text-xs ">
                   33+ available
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-indigo-600  text-white rounded-lg">
+            <div className="flex items-center gap-4 bg-white  text-black rounded-lg">
               
               <img src={services} alt="avatar" className='rounded-s-lg ring-gray-400 h-24 w-24 object-cover'/>
               <div>
                 <h6 >Services</h6>
-                <p className="font-normal text-xs dark:text-gray-200">
+                <p className="font-normal text-xs ">
                   33+ available
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-indigo-600  text-white rounded-lg">
+            <div className="flex items-center gap-4 bg-white  text-black rounded-lg">
               
               <img src={services} alt="avatar" className='rounded-s-lg ring-gray-400 h-24 w-24 object-cover'/>
               <div>
                 <h6 >Services</h6>
-                <p className="font-normal text-xs dark:text-gray-200">
+                <p className="font-normal text-xs ">
                   33+ available
                 </p>
               </div>
             </div>
+        </div>
 
+        <div className='pt-20'>
+          <h1 className='text-center text-3xl font-medium'>Jobs of the day</h1>
         </div>
       </section>
       
