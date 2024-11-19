@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Reqruiters from './pages/Reqruiters';
 import Footer from './components/Footer';
 import Register from './pages/Register';
-import Users from './Users'
+import Users from './components/UsersTable'
 
 
 function App() {

@@ -1,10 +1,13 @@
-
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\API\AuthController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
-Route::middleware([EnsureFrontendRequestsAreStateful::class, 'api'])->group(function () {
-    Route::post('/login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
 });
+

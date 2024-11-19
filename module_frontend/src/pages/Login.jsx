@@ -1,43 +1,31 @@
-import React from 'react'
-import wl from '../assets/images/wl.png'
+import React, { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-function Login() {
-  return (
-    <div className='lg:flex shadow-2xl rounded-2xl'>
+const Login = () => {
+    const [formData, setFormData] = useState({ email: "", password: "" });
 
-      <div >
-        <img src={wl} alt="hero-login-image" className='max-h-[32rem] rounded-l-2xl lg:block hidden'/>
-      </div>
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-      <div className='p-8 flex content-center items-center'>
-      <div>
-      <div>
-        <h1 className='text-center text-4xl'>Login</h1>
-        <p className='text-center'>Enter your email and password to sign in</p>
-      </div>
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await axios.post("http://127.0.0.1:8000/api/login", formData);
+          console.log(response.data);
+      } catch (error) {
+        console.error("Error:", error.response ? error.response.data : error.message);
+      }
+    };
 
-      <div className='mt-10'>
+    return (
+        <form onSubmit={handleSubmit}>
+            <input type="email" name="email" onChange={handleChange} />
+            <input type="password" name="password" onChange={handleChange} />
+            <button type="submit">Login</button>
+        </form>
+    );
+};
 
-      <div className='p-2'>
-        <label className='text-sm'>Username</label> <br/>
-        <input type="text" name='username' placeholder='yourname@domain.com' className='ring-1 p-4 text-sm font-light rounded-xl w-full ring-black'/>
-      </div>
-
-      <div className='p-2'>
-        <label className='text-sm'>Password</label> <br/>
-        <input type="password" name='password' placeholder='********' className='ring-1 p-4 text-sm font-light rounded-xl w-full ring-black '/>
-      </div>
-
-      <div className='p-2 '>
-        <button className='w-full bg-indigo-600 hover:ring-4 hover:ring-indigo-400 text-white'>Login</button>
-      </div>
-      </div>
-      </div>
-
-      </div>
-
-    </div>
-  )
-}
-
-export default Login
+export default Login;

@@ -10,3 +10,4 @@ Route::get('/', function () {
 Route::get('/users', function() {
     return response()->json(User::all());
 });
+
