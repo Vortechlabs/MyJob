@@ -10,9 +10,10 @@ use Validator;
 class AuthController extends Controller
 {
     public function register(Request $request){
+        \Log::info('Registration request:', $request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
             'confirm_password' => 'required|same:password'
         ]);
@@ -70,4 +71,26 @@ class AuthController extends Controller
             ]);
         }
     }
+
+    public function update(Request $request, $id)
+{
+    // Validasi input
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:users,email,' . $id,
+    ]);
+
+    // Temukan pengguna berdasarkan ID
+    $user = User::find($id);
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
+    }
+
+    // Update data pengguna
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->save();
+
+    return response()->json($user, 200);
+}
 }

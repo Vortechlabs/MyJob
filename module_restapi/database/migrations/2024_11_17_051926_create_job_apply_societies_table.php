@@ -37,9 +37,11 @@ return new class extends Migration
         Schema::create('job_vacancies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('job_category_id');
+            $table->string(column: 'title');
             $table->string('company');
             $table->text('address');
             $table->text('description');
+            $table->string('salary');
         });
         
         Schema::create('available_positions', function (Blueprint $table) {

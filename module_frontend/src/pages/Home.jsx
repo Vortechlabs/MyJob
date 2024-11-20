@@ -6,14 +6,15 @@ import google from '../assets/images/logo/google.png'
 import alphabeth from '../assets/images/logo/alphabeth.png'
 import services from '../assets/images/services.jpeg'
 import { Link } from 'react-router-dom'
+import JobCard from '../components/JobCard'
 
 function Home() {
   return (
-    <div className='block justify-center px-6'>
-      <section className='lg:flex '>
+    <div className='block max-w-7xl justify-center px-6'>
+      <section className='lg:flex lg:justify-between'>
         <div className=' max-w-2xl justify-center content-center items-center'>
-        <p className='lg:text-6xl text-5xl'>Find Your Future Career in MyJob</p>
-        <p className='text-lg pt-2'>Aliquip enim quis dolore est amet deserunt reprehenderit aliqua consectetur exercitation quis elit enim.</p>
+        <p className='lg:text-6xl text-6xl'>Find Your Future Career in MyJob</p>
+        <p className='text-2xl pt-2'>Aliquip enim quis dolore est amet deserunt reprehenderit aliqua consectetur exercitation quis elit enim.</p>
         <div className='flex gap-5 pt-2'>
           <Link to={'/Jobs'}><button className='ring-2 ring-indigo-600'>Lamar Pekerjaan</button></Link>
           <Link to={'/Reqruiters'}><button className='bg-indigo-600 text-white hover:ring-2'>Buat pekerjaan</button></Link>
@@ -129,8 +130,12 @@ function Home() {
             </div>
         </div>
 
-        <div className='pt-20'>
+        <div className='mt-20 mb-8'>
           <h1 className='text-center text-3xl font-medium'>Jobs of the day</h1>
+          <p className='text-center'>Find the job that's perfect for you. about 500+ ne jobs everyday.</p>
+        </div>
+        <div>
+          <JobCard />
         </div>
       </section>
       
