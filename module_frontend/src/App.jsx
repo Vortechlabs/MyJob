@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { Navbar } from './components/Navbar'
-import About from './pages/about';
 import Home from './pages/Home';
 import Jobs from './pages/Jobs';
 import Contact from './pages/Contact';
@@ -13,6 +12,8 @@ import Users from './components/UsersTable'
 import UpdateUser from './components/UpdateUser'
 import { AuthProvider } from '../src/components/AuthContext';
 import CreateJob from './pages/CreateJob';
+import JobDetails from './pages/JobDetails';
+import { Question } from './pages/Question';
 
 function App() {
 
@@ -24,7 +25,8 @@ function App() {
         <div className='pt-32'></div>
         <Routes>
           <Route path='/' element={<Home />}/>
-          <Route path='/About' element={<About />}/>
+          <Route path='/home' element={<Home />}/>
+          <Route path='/Question' element={<Question />}/>
           <Route path='/Jobs' element={<Jobs />}/>
           <Route path='/Reqruiters' element={<Reqruiters />}/>
           <Route path='/Contact' element={<Contact />}/>
@@ -34,6 +36,7 @@ function App() {
           <Route path='/Users' element={<Users />}/>
           <Route path='/UpdateUser/:id' element={<UpdateUser />}/>
           <Route path='/users/:id' element={<UpdateUser />}/>
+          <Route path='/JobDetails/:id' element={<JobDetails />}/>
         </Routes>
         <Footer />
       </Router>

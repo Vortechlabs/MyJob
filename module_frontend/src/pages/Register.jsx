@@ -67,7 +67,7 @@ const Register = () => {
         </div>
   
         <div className='p-2'>
-          <label className='text-sm'>Username</label> <br/>
+          <label className='text-sm'>Email</label> <br/>
           <input type="text" name="email"  onChange={handleChange} required  placeholder='yourname@domain.com' className='ring-1 p-2 text-sm font-light rounded-xl w-full ring-black'/>
         </div>
   

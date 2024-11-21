@@ -27,14 +27,14 @@ const Login = () => {
                     navigate("/"); 
                 });
             } else {
-                Swal.fire("Login Failed", response.data.message, "error");
+                Swal.fire("Login Failed", /*response.data.message*/ "Id_card Number or Password Incorrect", "error");
             }
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 401) {
-                    Swal.fire("Login Failed", "Invalid Email or Password", "error");
+                    Swal.fire("Login Failed", /*"Invalid Email or Password"*/"Id_card Number or Password Incorrect", "error");
                 } else {
-                    Swal.fire("Login Failed", error.response.data.message || "An unexpected error occurred.", "error");
+                    Swal.fire("Login Failed", /*error.response.data.message*/ "Id_card Number or Password Incorrect" || "An unexpected error occurred.", "error");
                 }
             } else {
                 Swal.fire("Login Failed", "An unexpected error occurred.", "error");
@@ -57,12 +57,12 @@ const Login = () => {
                     <div className='p-2'>
                         <label className='text-sm'>Email</label> <br/>
                         <input
-                            type="text"
+                            type="email"
                             name="email"
                             onChange={handleChange}
                             required
                             placeholder='yourname@domain.com'
-                            className='ring-1 p-2 text-sm font-light rounded-xl w-full ring-black'
+                            className='ring-1 p-2 text-black text-sm font-light rounded-xl w-full ring-black'
                         />
                     </div>
 
@@ -74,7 +74,7 @@ const Login = () => {
                             onChange={handleChange}
                             required
                             placeholder='********'
-                            className='ring-1 p-2 text-sm font-light rounded-xl w-full ring-black'
+                            className='ring-1 p-2 text-black text-sm font-light rounded-xl w-full ring-black'
                         />
                     </div>
 

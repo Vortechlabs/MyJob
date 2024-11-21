@@ -24,10 +24,11 @@ export const Navbar = () => {
         <h1 className='text-2xl font-medium flex items-center'>MyJob</h1>
       </div>
       <div className='hidden md:flex items-center gap-5'>
-        <NavLink to="/" className={({ isActive }) => isActive ? 'text-indigo-600' : 'light:text-black dark:text-white hover:text-indigo-600'}>Home</NavLink>
+        <NavLink to="/" className={({ isActive }) => isActive ? 'hidden' : 'hidden'}>Home</NavLink>
+        <NavLink to="/home" className={({ isActive }) => isActive ? 'text-indigo-600' : 'light:text-black dark:text-white hover:text-indigo-600'}>Home</NavLink>
         <DropdownFJ />
         <NavLink to="/Reqruiters" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>Reqruiters</NavLink>
-        <NavLink to="/About" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>About</NavLink>
+        <NavLink to="/Question" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>FaQ</NavLink>
         <NavLink to="/Contact" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>Contact</NavLink>
       </div>
       <div className='flex gap-2'>

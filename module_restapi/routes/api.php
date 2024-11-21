@@ -1,8 +1,10 @@
 <?php
 
+//api
+
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\JobController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\JobController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
