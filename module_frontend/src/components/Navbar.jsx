@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../assets/logo.svg';
 import { NavLink, Link } from 'react-router-dom';
-import DropdownFJ from './JobDropDown';
 import { useAuth } from './AuthContext'; 
 
 export const Navbar = () => {
@@ -24,9 +23,9 @@ export const Navbar = () => {
         <h1 className='text-2xl font-medium flex items-center'>MyJob</h1>
       </div>
       <div className='hidden md:flex items-center gap-5'>
-        <NavLink to="/" className={({ isActive }) => isActive ? 'hidden' : 'hidden'}>Home</NavLink>
-        <NavLink to="/home" className={({ isActive }) => isActive ? 'text-indigo-600' : 'light:text-black dark:text-white hover:text-indigo-600'}>Home</NavLink>
-        <DropdownFJ />
+        <NavLink to="/" className={({ isActive }) => isActive ? 'hidden' : 'hidden'}></NavLink>
+        <NavLink to="/home" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>Home</NavLink>
+        <NavLink to="/Jobs" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>Find a job</NavLink>
         <NavLink to="/Reqruiters" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>Reqruiters</NavLink>
         <NavLink to="/Question" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>FaQ</NavLink>
         <NavLink to="/Contact" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>Contact</NavLink>
@@ -56,14 +55,21 @@ export const Navbar = () => {
       <div className={`absolute top-16 right-0 bg-white dark:bg-[#242424] p-10 shadow-md w-full md:hidden transition-all duration-300 ${isOpen ? 'block' : 'hidden'}`}>
         <div className='flex flex-col lg:items-center'>
           <NavLink
-            to="/"
+            to="/home"
             className={({ isActive }) => 
               isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'
             }
           >
             Home
           </NavLink>
-          <DropdownFJ />
+          <NavLink
+            to="/Jobs"
+            className={({ isActive }) => 
+              isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'
+            }
+          >
+            Find a Job
+          </NavLink>
           <NavLink
             to="/Reqruiters"
             className={({ isActive }) => 

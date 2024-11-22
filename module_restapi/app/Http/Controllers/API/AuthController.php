@@ -73,24 +73,24 @@ class AuthController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    // Validasi input
-    $validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:users,email,' . $id,
-    ]);
+    {
+        // Validasi input
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+        ]);
 
-    // Temukan pengguna berdasarkan ID
-    $user = User::find($id);
-    if (!$user) {
-        return response()->json(['message' => 'User not found'], 404);
+        // Temukan pengguna berdasarkan ID
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        // Update data pengguna
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return response()->json($user, 200);
     }
-
-    // Update data pengguna
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->save();
-
-    return response()->json($user, 200);
-}
 }

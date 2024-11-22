@@ -36,12 +36,13 @@ return new class extends Migration
         
         Schema::create('job_vacancies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('job_category_id');
-            $table->string(column: 'title');
-            $table->string('company');
-            $table->text('address');
+            $table->string('title');
             $table->text('description');
-            $table->string('salary');
+            $table->decimal('salary', 10, 2);
+            $table->string('company');
+            $table->string('address');
+            $table->unsignedBigInteger('job_category_id');
+            $table->timestamps();
         });
         
         Schema::create('available_positions', function (Blueprint $table) {

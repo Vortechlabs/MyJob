@@ -11,7 +11,6 @@ import Register from './pages/Register';
 import Users from './components/UsersTable'
 import UpdateUser from './components/UpdateUser'
 import { AuthProvider } from '../src/components/AuthContext';
-import CreateJob from './pages/CreateJob';
 import JobDetails from './pages/JobDetails';
 import { Question } from './pages/Question';
 
@@ -32,7 +31,6 @@ function App() {
           <Route path='/Contact' element={<Contact />}/>
           <Route path='/Login' element={<Login />}/>
           <Route path='/Register' element={<Register />}/>
-          <Route path='/CreateJob' element={<CreateJob />}/>
           <Route path='/Users' element={<Users />}/>
           <Route path='/UpdateUser/:id' element={<UpdateUser />}/>
           <Route path='/users/:id' element={<UpdateUser />}/>

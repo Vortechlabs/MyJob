@@ -17,7 +17,3 @@ Route::get('/users', function() {
 Route::get('/job', function() {
     return response()->json(JobVacancy::all());
 });
-
-
-
-

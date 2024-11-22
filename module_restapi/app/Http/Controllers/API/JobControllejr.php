@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\JobVacancy;
 use Illuminate\Http\Request;
 use DB;
@@ -10,28 +9,12 @@ use Validator;
 
 class JobController extends Controller
 {
+
     public function index(){
         return JobVacancy::all();
     }
 
-    public function create(Request $request)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'salary' => 'required|numeric',
-            'company' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'job_category_id' => 'required|integer|exists:job_categories,id', // Assuming there's a job_categories table
-        ]);
-    
-        // Proceed to create the job vacancy
-        $jobVacancy = JobVacancy::create($validatedData);
-    
-        return response()->json(['success' => true, 'data' => $jobVacancy], 201);
-    }
-    
-    /*public function add(Request $request){
+    public function add(Request $request){
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
@@ -68,7 +51,7 @@ class JobController extends Controller
                 'data'=> $e->getMessage()
             ]);
         }
-    }*/
+    }
 
     
     /*public function index(){
@@ -79,4 +62,5 @@ class JobController extends Controller
         ->paginate(10);
     }*/
 
+    
 }
