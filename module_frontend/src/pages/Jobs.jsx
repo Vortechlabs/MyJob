@@ -3,7 +3,9 @@ import JobCard from '../components/JobCard'
 
 function Jobs() {
   return (
-    <JobCard />
+    <div className='px-10'>
+        <JobCard />
+    </div>
   )
 }
 

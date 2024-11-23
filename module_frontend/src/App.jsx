@@ -13,6 +13,9 @@ import UpdateUser from './components/UpdateUser'
 import { AuthProvider } from '../src/components/AuthContext';
 import JobDetails from './pages/JobDetails';
 import { Question } from './pages/Question';
+import Spinner from './components/Spinner';
+import User from './pages/admin/User';
+import Dashboard from './pages/admin/Dashboard';
 
 function App() {
 
@@ -35,6 +38,11 @@ function App() {
           <Route path='/UpdateUser/:id' element={<UpdateUser />}/>
           <Route path='/users/:id' element={<UpdateUser />}/>
           <Route path='/JobDetails/:id' element={<JobDetails />}/>
+          <Route path='/AdminPanel' element={ <Dashboard /> }/>
+          <Route path='UserData' element={<User />}/>
+          
+          
+          <Route path='/Spinner' element={<Spinner />}/>
         </Routes>
         <Footer />
       </Router>

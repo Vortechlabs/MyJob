@@ -10,7 +10,7 @@ import JobCard from '../components/JobCard'
 
 function Home() {
   return (
-    <div className='block max-w-7xl justify-center px-6'>
+    <div className='block max-w-7xl justify-center px-10'>
       <section className='lg:flex lg:justify-between'>
         <div className=' max-w-2xl justify-center content-center items-center'>
         <p className='lg:text-6xl text-6xl'>Find Your Future Career in MyJob</p>

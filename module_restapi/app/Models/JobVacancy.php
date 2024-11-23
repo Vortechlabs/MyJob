@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class JobVacancy extends Model
 {
-    
-    public $fillable =  [
+    protected $fillable = [
+        
         'title',
         'description',
         'salary',
@@ -16,7 +15,9 @@ class JobVacancy extends Model
         'address',
         'job_category_id',
     ];
-    
-    
 
+    public function category()
+    {
+        return $this->belongsTo(JobCategories::class, 'job_category_id', 'id');
+    }
 }

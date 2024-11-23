@@ -10,8 +10,9 @@ use Validator;
 
 class JobController extends Controller
 {
-    public function index(){
-        return JobVacancy::all();
+    public function index() {
+        $jobs = JobVacancy::with('category')->latest()->paginate();
+        return response()->json($jobs);
     }
 
     public function create(Request $request)

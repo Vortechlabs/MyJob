@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = DB::table("job_vacancies")
-        ->join("job_categories","job_vacancies.job_categories_id","=","job_categories.id")
-        ->select('job_vacancies.*'.'job_categories.job_category')
-        ->latest()
-        ->paginate(10);
+        
+        $category = JobCategories::all();
+    
+        return response()->json(['success' => true, 'data' => $category], 201);
     }
 }

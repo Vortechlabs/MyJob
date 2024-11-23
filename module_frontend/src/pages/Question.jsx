@@ -3,7 +3,7 @@ import { Accordion } from "flowbite-react";
 
 export function Question() {
   return (
-    <div className="max-w-7xl">
+    <div className="mx-auto px-5 py-10 sm:px-10 md:px-12 lg:px-10  max-w-7xl">
     <Accordion>
       <Accordion.Panel>
         <Accordion.Title>What is Flowbite?</Accordion.Title>

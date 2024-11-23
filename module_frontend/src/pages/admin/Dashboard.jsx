@@ -1,9 +1,12 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-function dashboard() {
+function Dashboard() {
   return (
-    <div>dashboard</div>
+    <div>dashboard
+    </div>
+   
   )
 }
 
-export default dashboard
+export default Dashboard

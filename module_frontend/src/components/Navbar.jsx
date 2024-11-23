@@ -17,7 +17,7 @@ export const Navbar = () => {
 };
 
   return (
-    <nav className='fixed top-0 left-0 right-0 xl:px-80 bg-transparent backdrop-blur-3xl shadow z-50 flex justify-between items-center p-6'>
+    <nav className='fixed top-0 left-0 right-0 2xl:px-80 bg-transparent backdrop-blur-3xl shadow z-50 flex justify-between items-center p-6'>
       <div className='flex h-7 gap-2'>
         <img src={logo} alt="logo" />
         <h1 className='text-2xl font-medium flex items-center'>MyJob</h1>
@@ -30,7 +30,7 @@ export const Navbar = () => {
         <NavLink to="/Question" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>FaQ</NavLink>
         <NavLink to="/Contact" className={({ isActive }) => isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'}>Contact</NavLink>
       </div>
-      <div className='flex gap-2'>
+      <div className='hidden md:flex gap-2'>
         {!isLoggedIn ? (
           <>
             <Link to={'/Login'} className='text-black dark:text-white dark:hover:text-indigo-600'>
@@ -52,7 +52,7 @@ export const Navbar = () => {
           {isOpen ? '✖' : '☰'}
         </button>
       </div>
-      <div className={`absolute top-16 right-0 bg-white dark:bg-[#242424] p-10 shadow-md w-full md:hidden transition-all duration-300 ${isOpen ? 'block' : 'hidden'}`}>
+      <div className={`absolute top-20 right-0 bg-white dark:bg-[#242424] p-10 shadow-md w-full md:hidden transition-all duration-300 ${isOpen ? 'block' : 'hidden'}`}>
         <div className='flex flex-col lg:items-center'>
           <NavLink
             to="/home"
@@ -79,12 +79,12 @@ export const Navbar = () => {
             Reqruiters
           </NavLink>
           <NavLink
-            to="/About"
+            to="/Question"
             className={({ isActive }) => 
               isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'
             }
           >
-            About
+            FaQ
           </NavLink>
           <NavLink
             to="/Contact"
