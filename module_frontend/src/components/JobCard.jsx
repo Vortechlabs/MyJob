@@ -39,6 +39,10 @@ function JobCard() {
             <CardPlaceholder />
             <CardPlaceholder />
             <CardPlaceholder />
+            <CardPlaceholder />
+            <CardPlaceholder />
+            <CardPlaceholder />
+            <CardPlaceholder />
             </div>
         ) : (
             <div className='grid lg:grid-cols-4 gap-5'>

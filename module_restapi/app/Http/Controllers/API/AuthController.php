@@ -41,6 +41,7 @@ class AuthController extends Controller
                 'data' => $success
             ]);
         } catch (\Exception $e) {
+            \Log::error('Registration error: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Registration Failed',

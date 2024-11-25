@@ -16,6 +16,7 @@ import { Question } from './pages/Question';
 import Spinner from './components/Spinner';
 import User from './pages/admin/User';
 import Dashboard from './pages/admin/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
 
@@ -30,16 +31,15 @@ function App() {
           <Route path='/home' element={<Home />}/>
           <Route path='/Question' element={<Question />}/>
           <Route path='/Jobs' element={<Jobs />}/>
-          <Route path='/Reqruiters' element={<Reqruiters />}/>
           <Route path='/Contact' element={<Contact />}/>
           <Route path='/Login' element={<Login />}/>
           <Route path='/Register' element={<Register />}/>
-          <Route path='/Users' element={<Users />}/>
-          <Route path='/UpdateUser/:id' element={<UpdateUser />}/>
-          <Route path='/users/:id' element={<UpdateUser />}/>
           <Route path='/JobDetails/:id' element={<JobDetails />}/>
-          <Route path='/AdminPanel' element={ <Dashboard /> }/>
-          <Route path='UserData' element={<User />}/>
+          <Route path='/UpdateUser/:id' element={<ProtectedRoute element={<UpdateUser/>} />} />
+          <Route path='Reqruiters' element={<ProtectedRoute element={<Reqruiters/>} />} />
+          <Route path='AdminPanel' element={<ProtectedRoute element={<Dashboard/>} />} />
+          <Route path='UserData' element={<ProtectedRoute element={<User/>} />} />
+          
           
           
           <Route path='/Spinner' element={<Spinner />}/>

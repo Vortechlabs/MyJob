@@ -24,10 +24,12 @@ const Register = () => {
               console.log(response.data);
               Swal.fire("Registration Successful", "You can now log in!", "success");
           } else {
+            console.log(response.data.data);
               Swal.fire("Registration Failed", response.data.message, "error");
           }
       } catch (error) {
           if (error.response) {
+            console.error("Error response:", error.response.data);
               if (error.response.status === 422) {
                   const errors = error.response.data.data; 
                   if (errors.email) {
