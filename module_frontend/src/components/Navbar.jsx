@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import logo from '../assets/logo.svg';
 import { NavLink, Link } from 'react-router-dom';
 import { useAuth } from './AuthContext'; 
+import { UserAvatarProfile } from './OfficerAvatarProfile';
 
 export const Navbar = () => {
-  const { isLoggedIn, setIsLoggedIn, logout } = useAuth(); 
+  const { isLoggedIn, setIsLoggedIn, logout, userData } = useAuth(); 
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -17,7 +18,7 @@ export const Navbar = () => {
 };
 
   return (
-    <nav className='fixed top-0 left-0 right-0 2xl:px-80 bg-transparent backdrop-blur-3xl shadow z-50 flex justify-between items-center p-6'>
+    <nav className='fixed top-0 left-0 right-0 bg-transparent backdrop-blur-3xl shadow z-50 flex justify-between items-center p-6'>
       <div className='flex h-7 gap-2'>
         <img src={logo} alt="logo" />
         <h1 className='text-2xl font-medium flex items-center'>MyJob</h1>
@@ -42,16 +43,30 @@ export const Navbar = () => {
           </>
         ) : (
           <>
-            <span className='text-black dark:text-white flex items-center'>Welcome, User!</span>
-            <button onClick={handleLogout} className='bg-red-600 text-white'>Logout</button>
+            <span className='text-black dark:text-white flex items-center'><UserAvatarProfile /></span>
           </>
         )}
       </div>
+      
+      {!isLoggedIn ? (
       <div className='flex md:hidden'>
+        <div> 
+        <Link to={'/Login'}>
+          <button className='text-black dark:text-white bg-transparent'>Login</button>
+        </Link>
+        </div>
         <button onClick={toggleMenu} className='text-black dark:text-white'>
           {isOpen ? '✖' : '☰'}
         </button>
       </div>
+      ):(
+        <div className='flex md:hidden'>
+        <div><UserAvatarProfile /> </div>
+        <button onClick={toggleMenu} className='text-black dark:text-white'>
+          {isOpen ? '✖' : '☰'}
+        </button>
+      </div>
+      )}
       <div className={`absolute top-20 right-0 bg-white dark:bg-[#242424] p-10 shadow-md w-full md:hidden transition-all duration-300 ${isOpen ? 'block' : 'hidden'}`}>
         <div className='flex flex-col lg:items-center'>
           <NavLink
@@ -94,23 +109,7 @@ export const Navbar = () => {
           >
             Contact
           </NavLink>
-          <div className='flex gap-2 mt-4'>
-            {!isLoggedIn ? (
-              <>
-                <Link to={'/Login'}>
-                  <button className='text-black bg-transparent'>Login</button>
-                </Link>
-                <Link to={'/Register'}>
-                  <button className='bg-indigo-600 text-white'>Register</button>
-                </Link>
-              </>
-            ) : (
-              <>
-                <span className='text-black dark:text-white felx items-center'>Welcome, User!</span>
-                <button onClick={handleLogout} className='bg-red-600 text-white'>Logout</button>
-              </>
-            )}
-          </div>
+         
         </div>
       </div>
     </nav>

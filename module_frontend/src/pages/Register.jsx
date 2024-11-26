@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import wl from '../assets/images/wl.png'
+import { Link } from "react-router-dom";
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ const Register = () => {
   };
 
     return (
-       
+       <main>
         <div className='flex shadow-2xl rounded-2xl'>
 
         <div >
@@ -82,6 +83,10 @@ const Register = () => {
           <label className='text-sm'>Cofirm Password</label> <br/>
           <input type="password"  name="confirm_password" placeholder="********" onChange={handleChange} required  className='ring-1 p-2 text-sm font-light rounded-xl w-full ring-black '/>
         </div>
+
+        <div  className='px-2 py-1'>
+          <p className="text-sm">Do you have an account? <span><Link to="/Login">Login</Link></span></p>
+        </div>
   
         <div className='p-2 '>
           <button type="submit" className='w-full bg-indigo-600 hover:ring-4 hover:ring-indigo-400 text-white'>Register</button>
@@ -92,6 +97,7 @@ const Register = () => {
         </div>
   
       </div>
+      </main>
     );
 };
 

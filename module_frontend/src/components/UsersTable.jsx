@@ -3,6 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ListPlaceholder from './placeholder/ListPlaceholder';
+import Swal from 'sweetalert2';
 
 export default class Users extends React.Component {
     constructor(props) {
@@ -37,22 +38,52 @@ export default class Users extends React.Component {
             );
     }
 
+    
     handleDelete = (id) => {
-        if (window.confirm("Are you sure you want to delete this user?")) {
-            axios.delete(`http://127.0.0.1:8000/api/users/${id}`)
-                .then(response => {
-                  console.log('User deleted:', response.data);
-                    this.setState(prevState => ({
-                        users: prevState.users.filter(user => user.id !== id)
-                    }));
-                })
-                .catch(error => {
-                    console.error('There was an error deleting the user!', error);
-                    this.setState({ error: 'Failed to delete user. Please try again.' });
-                });
-        }
+        console.log('Attempting to delete user with ID:', id); 
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://127.0.0.1:8000/api/users/${id}`)
+                    .then(response => {
+                        console.log('User  deleted:', response.data);
+                        this.setState(prevState => ({
+                            users: prevState.users.filter(user => user.id !== id)
+                        }));
+                        Swal.fire(
+                            'Deleted!',
+                            'Your user has been deleted.',
+                            'success'
+                        );
+                    })
+                    .catch(error => {
+                        console.error('There was an error deleting the user!', error);
+                        if (error.response) {
+                            console.error('Server responded with:', error.response.data);
+                            console.error('Status code:', error.response.status);
+                            console.error('Headers:', error.response.headers);
+                        } else if (error.request) {
+                            console.error('No response received:', error.request);
+                        } else {
+                            console.error('Error', error.message);
+                        }
+                        this.setState({ error: 'Failed to delete user. Please try again.' });
+                        Swal.fire(
+                            'Error!',
+                            'There was an error deleting the user.',
+                            'error'
+                        );
+                    });
+            }
+        });
     }
-
     render() {
         const { error, isLoaded, users } = this.state;
         if (error) {

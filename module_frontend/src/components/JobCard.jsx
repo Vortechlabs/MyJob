@@ -49,7 +49,7 @@ function JobCard() {
                 {jobVacancies.map(job => (
                     <div key={job.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
-                            <img className="rounded-t-lg" src={job.imageUrl || work1} alt={job.title} />
+                            <img className="rounded-t-lg min-h-80 max-h-80 min-w-full max-w-full object-cover"  src={`http://localhost:8000/fotocompany/${job.foto}`} alt={job.title} />
                         </a>
                         <div className="p-5 text-sm">
                             <a href="#">

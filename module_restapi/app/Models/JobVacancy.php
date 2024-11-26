@@ -13,6 +13,7 @@ class JobVacancy extends Model
         'company',
         'address',
         'job_category_id',
+        'foto'
     ];
 
     public function category()

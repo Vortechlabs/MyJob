@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate, Link } from "react-router-dom"; 
 import wl from '../assets/images/wl.png';
 import { useAuth } from '../components/AuthContext'; 
+
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -43,6 +44,7 @@ const Login = () => {
     };
 
     return (
+        <main>
         <div className='flex shadow-2xl rounded-2xl'>
             <div>
                 <img src={wl} alt="hero-login-image" className='max-h-[38rem] rounded-l-2xl hidden lg:block'/>
@@ -78,6 +80,10 @@ const Login = () => {
                         />
                     </div>
 
+                    <div className='px-2 py-1'>
+                    <p className="text-sm">Don't you have an Account yet? <span><Link to="/Register">Register</Link></span></p>
+                    </div>
+
                     <div className='p-2'>
                         <button type="submit" className='w-full bg-indigo-600 hover:ring-4 hover:ring-indigo-400 text-white'>
                             Login
@@ -86,6 +92,7 @@ const Login = () => {
                 </form>
             </div>
         </div>
+        </main>
     );
 };
 

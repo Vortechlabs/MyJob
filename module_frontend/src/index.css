@@ -37,10 +37,13 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+main{
+  display: flex;
+  justify-content: center;
 }
 
 h1 {

@@ -17,6 +17,7 @@ import Spinner from './components/Spinner';
 import User from './pages/admin/User';
 import Dashboard from './pages/admin/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import UserProfile from './pages/UserProfile';
 
 function App() {
 
@@ -39,8 +40,8 @@ function App() {
           <Route path='Reqruiters' element={<ProtectedRoute element={<Reqruiters/>} />} />
           <Route path='AdminPanel' element={<ProtectedRoute element={<Dashboard/>} />} />
           <Route path='UserData' element={<ProtectedRoute element={<User/>} />} />
-          
-          
+          <Route path='UserProfile' element={<UserProfile />}/>
+
           
           <Route path='/Spinner' element={<Spinner />}/>
         </Routes>

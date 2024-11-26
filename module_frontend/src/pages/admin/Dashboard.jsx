@@ -1,9 +1,16 @@
+
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import SidebarPanel from '../../components/SidebarPanel'
+import Users from '../../components/UsersTable'
+import JobVacanciesTable from '../../components/JobVacanciesTable'
 
 function Dashboard() {
   return (
-    <div>dashboard
+    <div className='flex justify-start flex-row w-full inset-0'>
+      <SidebarPanel />
+      <div>
+        <JobVacanciesTable />
+      </div>
     </div>
    
   )

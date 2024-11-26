@@ -5,6 +5,7 @@ import '../index.css'
 
 function Reqruiters() {
   const [formData, setFormData] = useState({
+    foto: "",
     title: "",
     salary: "",
     company: "",
@@ -19,9 +20,8 @@ function Reqruiters() {
     const fetchJobCategories = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/JobCategories");
-        console.log(response.data); // Check the response data
-  
-        // Check if the response contains a success property
+        console.log(response.data); 
+
         if (response.data && response.data.success) {
           setJobCategories(response.data.data);
         } else {
@@ -46,9 +46,21 @@ function Reqruiters() {
         Swal.fire("Add Failed", "Please fill in all required fields.", "error");
         return;
     }
-      try{
-          const response = await axios.post("http://127.0.0.1:8000/api/createjob", formData);
+    const data = new FormData();
+    data.append('foto', e.target.foto.files[0]); // Ambil file dari input
+    data.append('title', formData.title);
+    data.append('salary', formData.salary);
+    data.append('company', formData.company);
+    data.append('address', formData.address);
+    data.append('job_category_id', formData.job_category_id);
+    data.append('description', formData.description);
 
+      try{
+           const response = await axios.post("http://127.0.0.1:8000/api/createjob", data, {
+            headers: {
+                'Content-Type': 'multipart/form-data' // Atur header untuk multipart
+            }
+            });
           if(response.data.success){
               console.log(response.data);
               Swal.fire("Add Successful", "You Can see your job now", "success");
@@ -76,6 +88,7 @@ function Reqruiters() {
   };
 
   return (
+    <main>
     <div className='px-5'>
       
       <h1>Job Information</h1>
@@ -87,11 +100,11 @@ function Reqruiters() {
           </label>
           <div className='relative'>
             <label
-              htmlFor='file'
+              htmlFor='foto'
               className='flex min-h-[175px] w-full cursor-pointer items-center justify-center rounded-md border border-dashed border-primary p-6'
             >
               <div>
-                <input type='file' name='file' id='file' className='sr-only' />
+                <input type='file' name='foto' id='foto' className='sr-only' />
                 <span className='mx-auto mb-3 flex h-[50px] w-[50px] items-center justify-center rounded-full border border-stroke dark:border-dark-3 bg-white dark:bg-dark-2'>
                   <svg
                     width='20'
@@ -164,6 +177,7 @@ function Reqruiters() {
         </div>
       </form>
     </div>
+    </main>
   )
 }
 

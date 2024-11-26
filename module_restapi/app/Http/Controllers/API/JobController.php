@@ -18,16 +18,21 @@ class JobController extends Controller
     public function create(Request $request)
     {
         $validatedData = $request->validate([
+            'foto' =>  'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'salary' => 'required|numeric',
             'company' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'job_category_id' => 'required|integer|exists:job_categories,id', // Assuming there's a job_categories table
+            'job_category_id' => 'required|integer|exists:job_categories,id',
         ]);
     
-        // Proceed to create the job vacancy
         $jobVacancy = JobVacancy::create($validatedData);
+        if($request->hasFile('foto')) {
+            $request->file('foto')->move('fotocompany/', $request->file('foto')->getClientOriginalName());
+            $jobVacancy->foto = $request->file('foto')->getClientOriginalName();
+            $jobVacancy->save();
+        }
     
         return response()->json(['success' => true, 'data' => $jobVacancy], 201);
     }

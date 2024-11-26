@@ -36,6 +36,7 @@ return new class extends Migration
         
         Schema::create('job_vacancies', function (Blueprint $table) {
             $table->id();
+            $table->string('foto');
             $table->string('title');
             $table->text('description');
             $table->decimal('salary', 10, 2);

@@ -10,6 +10,7 @@ import JobCard from '../components/JobCard'
 
 function Home() {
   return (
+    <main>
     <div className='block max-w-7xl justify-center px-10'>
       <section className='lg:flex lg:justify-between'>
         <div className=' max-w-2xl justify-center content-center items-center'>
@@ -140,6 +141,7 @@ function Home() {
       </section>
       
     </div>
+    </main>
 
   )
 }
