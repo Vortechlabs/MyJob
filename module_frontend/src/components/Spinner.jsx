@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Spinner() {
   return (
-    <section className="bg-trandsparent py-20">
-      <div className="container">
+    <section className="bg-trandsparent py-20 flex items-center justify-center">
+      <div className="container flex items-center justify-center">
         <div className="flex flex-wrap items-center gap-4">
           <div>
             <svg

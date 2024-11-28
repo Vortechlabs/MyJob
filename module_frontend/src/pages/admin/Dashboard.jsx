@@ -1,7 +1,6 @@
 
 import React from 'react'
 import SidebarPanel from '../../components/SidebarPanel'
-import Users from '../../components/UsersTable'
 import JobVacanciesTable from '../../components/JobVacanciesTable'
 
 function Dashboard() {

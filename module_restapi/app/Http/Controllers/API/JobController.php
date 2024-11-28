@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\AvailablePosition;
 use App\Models\JobVacancy;
 use Illuminate\Http\Request;
 use DB;
@@ -11,28 +12,52 @@ use Validator;
 class JobController extends Controller
 {
     public function index() {
-        $jobs = JobVacancy::with('category')->latest()->paginate();
+        $jobs = JobVacancy::with(['category', 'availablePositions'])->latest()->paginate();
         return response()->json($jobs);
+    }
+
+    public function show($id)
+    {
+        \Log::info("Fetching job with ID: $id");
+        $jobshow = JobVacancy::with(['category', 'availablePositions'])->find($id);
+        
+        if (!$jobshow) {
+            \Log::warning("Job with ID: $id not found");
+            return response()->json(['message' => 'Job not found'], 404);
+        }
+        
+        return response()->json($jobshow);
     }
 
     public function create(Request $request)
     {
         $validatedData = $request->validate([
             'foto' =>  'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'title' => 'required|string|max:255',
             'description' => 'required|string',
             'salary' => 'required|numeric',
             'company' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'job_category_id' => 'required|integer|exists:job_categories,id',
+            'position' => 'required|string|max:255', 
+            'capacity' => 'required|integer',
         ]);
     
         $jobVacancy = JobVacancy::create($validatedData);
-        if($request->hasFile('foto')) {
+        
+        if ($request->hasFile('foto')) {
             $request->file('foto')->move('fotocompany/', $request->file('foto')->getClientOriginalName());
             $jobVacancy->foto = $request->file('foto')->getClientOriginalName();
             $jobVacancy->save();
         }
+    
+        $availablePosition = new AvailablePosition([
+            'job_vacancy_id' => $jobVacancy->id, 
+            'position' => $request->input('position'), 
+            'capacity' => $request->input('capacity'), 
+            'apply_capacity' => $request->input('capacity'),
+        ]);
+    
+        $availablePosition->save(); 
     
         return response()->json(['success' => true, 'data' => $jobVacancy], 201);
     }

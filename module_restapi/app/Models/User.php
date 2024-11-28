@@ -47,4 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function validators()
+    {
+        return $this->hasMany(Validators::class, 'user_id', 'id');
+    }
 }

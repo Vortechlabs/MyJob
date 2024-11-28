@@ -14,6 +14,7 @@ class Validators extends Model
     ];
 
     public function Validators(){
+        
         return $this-> belongsTo(User::class,'user_id', 'id');
     }
 }

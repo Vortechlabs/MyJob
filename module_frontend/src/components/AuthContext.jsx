@@ -18,52 +18,58 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    const validateToken = async (token) => {
-        try {
-            const response = await fetch('http://127.0.0.1:8000/api/Validators', {
-                method: 'GET', 
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-    
-            const contentType = response.headers.get("content-type");
-            let data;
-    
-            if (contentType && contentType.includes("application/json")) {
-                data = await response.json();
-            } else {
-                throw new Error("Response is not JSON");
+   
+const validateToken = async (token) => {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/Validators', {
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
-    
-            console.log("API Response:", data); 
-    
-            if (response.ok) {
+        });
+
+        const contentType = response.headers.get("content-type");
+        let data;
+
+        if (contentType && contentType.includes("application/json")) {
+            data = await response.json();
+        } else {
+            throw new Error("Response is not JSON");
+        }
+
+        console.log("API Response:", data);
+
+        if (response.ok) {
+            // Data yang didapat dari server
+            if (Array.isArray(data.data) && data.data.length > 0) {
                 setIsLoggedIn(true);
-                setUserData(data.data[0]); 
+                setUserData(data.data[1]); // Mengambil data yang tepat
             } else {
-                setIsLoggedIn(false);
-                setUserData(null);
-                Swal.fire({
-                    title: 'Invalid Token',
-                    text: data.message || 'Token is invalid or expired.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-                navigate('/Login');
+                throw new Error("Invalid data structure");
             }
-        } catch (error) {
-            console.error("Error validating token:", error);
+        } else {
+            setIsLoggedIn(false);
+            setUserData(null);
             Swal.fire({
-                title: 'Error',
-                text: 'An error occurred while validating the token.',
+                title: 'Invalid Token',
+                text: data.message || 'Token is invalid or expired.',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
             navigate('/Login');
         }
-    };
+    } catch (error) {
+        console.error("Error validating token:", error);
+        Swal.fire({
+            title: 'Error',
+            text: 'An error occurred while validating the token.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        navigate('/Login');
+    }
+};
 
     const login = (userData) => {
         setIsLoggedIn(true);
@@ -83,7 +89,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, userData, login, logout, setIsLoggedIn }}>
+        <AuthContext.Provider value={{ isLoggedIn, userData, login, logout, setIsLoggedIn, validateToken }}>
             {children}
         </AuthContext.Provider>
     );

@@ -18,6 +18,8 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::post('createjob', [JobController::class,'create']);
 Route::get('/Jobs', [JobController::class, 'index']);
+Route::get('/Jobs/{id}', [JobController::class, 'show']);
+Route::get('/Jobs/{id}', [JobController::class, 'show']);
 Route::get('/JobCategories', [CategoryController::class, 'index']);
 Route::get('/Validators', [ValidatorsController::class, 'index']);
 

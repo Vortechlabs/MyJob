@@ -21,9 +21,9 @@ export function UserAvatarProfile() {
       style={{ backgroundColor: 'transparent', padding: '0' }}
     >
       <Dropdown.Header>
-        <span className="block text-sm">{userData.name}</span>
+        <span className="block text-sm">{userData ? userData.name : "Guest"}</span>
         <span className="block truncate text-sm font-medium">
-          {userData.validators.email}
+        {userData ? userData.validators.email : "No email"} 
         </span>
       </Dropdown.Header>
       <Dropdown.Item style={{ backgroundColor: 'transparent'}}>

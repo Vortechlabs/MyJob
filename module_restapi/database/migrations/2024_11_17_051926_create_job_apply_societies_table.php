@@ -52,6 +52,7 @@ return new class extends Migration
             $table->string('position');
             $table->bigInteger('capacity');
             $table->bigInteger('apply_capacity');
+            $table->timestamps();
         });
     }
 

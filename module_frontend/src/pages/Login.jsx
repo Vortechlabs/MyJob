@@ -9,7 +9,7 @@ import { useAuth } from '../components/AuthContext';
 const Login = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const navigate = useNavigate(); 
-    const { setIsLoggedIn } = useAuth(); 
+    const { setIsLoggedIn, validateToken  } = useAuth(); 
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,21 +21,27 @@ const Login = () => {
             const response = await axios.post("http://127.0.0.1:8000/api/login", formData);
             
             if (response.data.success) {
-                console.log(formData)
                 localStorage.setItem('token', response.data.token);
+                
                 setIsLoggedIn(true);
+                
+                await validateToken(response.data.token);
+                
                 Swal.fire("Login Successful", "Welcome back!", "success").then(() => {
                     navigate("/"); 
                 });
             } else {
-                Swal.fire("Login Failed", /*response.data.message*/ "Id_card Number or Password Incorrect", "error");
+                Swal.fire("Login Failed", "Email or Password Incorrect", "error");
             }
         } catch (error) {
+           
+            console.error("Login error:", error); 
             if (error.response) {
+                console.log("Response data:", error.response.data); 
                 if (error.response.status === 401) {
-                    Swal.fire("Login Failed", /*"Invalid Email or Password"*/"Id_card Number or Password Incorrect", "error");
+                    Swal.fire("Login Failed", "Email or Password Incorrect", "error");
                 } else {
-                    Swal.fire("Login Failed", /*error.response.data.message*/ "Id_card Number or Password Incorrect" || "An unexpected error occurred.", "error");
+                    Swal.fire("Login Failed", "An unexpected error occurred.", "error");
                 }
             } else {
                 Swal.fire("Login Failed", "An unexpected error occurred.", "error");
