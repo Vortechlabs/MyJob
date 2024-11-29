@@ -1,76 +1,160 @@
 
 import { Accordion } from "flowbite-react";
+import { Link } from "react-router-dom";
 
 export function Question() {
   return (
     <div className="mx-auto px-5 py-10 sm:px-10 md:px-12 lg:px-10  max-w-7xl">
     <Accordion>
+
       <Accordion.Panel>
-        <Accordion.Title>What is Flowbite?</Accordion.Title>
+        <Accordion.Title>What is MyJob?</Accordion.Title>
         <Accordion.Content>
           <p className="mb-2 text-gray-500 dark:text-gray-400">
-            Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons,
-            dropdowns, modals, navbars, and more.
+          MyJob is a comprehensive job portal platform designed to connect job seekers with employment opportunities across Indonesia.
+          It serves as a centralized hub for individuals looking to apply for various positions in diverse industries, making the job search process more efficient and accessible.
+          With a user-friendly interface, MyJob allows users to easily browse job listings, submit applications, and find the perfect job match.
           </p>
           <p className="text-gray-500 dark:text-gray-400">
-            Check out this guide to learn how to&nbsp;
-            <a
-              href="https://flowbite.com/docs/getting-started/introduction/"
-              className="text-cyan-600 hover:underline dark:text-cyan-500"
+          Join us today and take the first step towards your dream career &nbsp;
+            <Link
+              to={'/Register'}
+              className="text-indigo-600 hover:underline dark:text-indigo-500"
             >
-              get started&nbsp;
-            </a>
-            and start developing websites even faster with components on top of Tailwind CSS.
+              sign up now&nbsp;
+            </Link>
+            on MyJob!
           </p>
         </Accordion.Content>
       </Accordion.Panel>
+
       <Accordion.Panel>
-        <Accordion.Title>Is there a Figma file available?</Accordion.Title>
+        <Accordion.Title>Is MyJob free to use?</Accordion.Title>
         <Accordion.Content>
           <p className="mb-2 text-gray-500 dark:text-gray-400">
-            Flowbite is first conceptualized and designed using the Figma software so everything you see in the library
-            has a design equivalent in our Figma file.
+          Yes, MyJob is completely free for job seekers. You can browse job listings, submit applications, and create a profile without any cost.
           </p>
           <p className="text-gray-500 dark:text-gray-400">
-            Check out the
-            <a href="https://flowbite.com/figma/" className="text-cyan-600 hover:underline dark:text-cyan-500">
-              Figma design system
+          Join us today and take the first step towards your dream career &nbsp;
+            <a href="" className="text-indigo-600 hover:underline dark:text-indigo-500">
+              sign up now&nbsp;
             </a>
-            based on the utility classes from Tailwind CSS and components from Flowbite.
+            on MyJob!
           </p>
         </Accordion.Content>
       </Accordion.Panel>
+
       <Accordion.Panel>
-        <Accordion.Title>What are the differences between Flowbite and Tailwind UI?</Accordion.Title>
+        <Accordion.Title>What types of jobs are available on MyJob?</Accordion.Title>
         <Accordion.Content>
           <p className="mb-2 text-gray-500 dark:text-gray-400 ">
-            The main difference is that the core components from Flowbite are open source under the MIT license, whereas
-            Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone
-            components, whereas Tailwind UI offers sections of pages.
+          MyJob features a wide range of job listings across various industries, including but not limited to technology, finance, healthcare, education, and hospitality.
           </p>
           <p className="mb-2 text-gray-500 dark:text-gray-400">
-            However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no
-            technical reason stopping you from using the best of two worlds.
+          MyJob features a wide range of job listings across various industries, including but not limited to technology, finance, healthcare, education, and hospitality.
           </p>
-          <p className="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
+          <p className="mb-2 text-gray-500 dark:text-gray-400">Learn more about these categories:</p>
           <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
             <li>
-              <a href="https://flowbite.com/pro/" className="text-cyan-600 hover:underline dark:text-cyan-500">
-                Flowbite Pro
+              <a href="" className="text-indigo-600 hover:underline dark:text-indigo-500">
+              Technology
               </a>
             </li>
             <li>
               <a
-                href="https://tailwindui.com/"
+                href=""
                 rel="nofollow"
-                className="text-cyan-600 hover:underline dark:text-cyan-500"
+                className="text-indigo-600 hover:underline dark:text-indigo-500"
               >
-                Tailwind UI
+                finance
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                rel="nofollow"
+                className="text-indigo-600 hover:underline dark:text-indigo-500"
+              >
+                healthcare
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                rel="nofollow"
+                className="text-indigo-600 hover:underline dark:text-indigo-500"
+              >
+                education
               </a>
             </li>
           </ul>
         </Accordion.Content>
       </Accordion.Panel>
+
+      <Accordion.Panel>
+        <Accordion.Title>Is MyJob free to use?</Accordion.Title>
+        <Accordion.Content>
+          <p className="mb-2 text-gray-500 dark:text-gray-400">
+          Yes, MyJob is completely free for job seekers. You can browse job listings, submit applications, and create a profile without any cost.
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+          Join us today and take the first step towards your dream career &nbsp;
+            <a href="" className="text-indigo-600 hover:underline dark:text-indigo-500">
+              sign up now&nbsp;
+            </a>
+            on MyJob!
+          </p>
+        </Accordion.Content>
+      </Accordion.Panel>
+
+      <Accordion.Panel>
+        <Accordion.Title>Is MyJob free to use?</Accordion.Title>
+        <Accordion.Content>
+          <p className="mb-2 text-gray-500 dark:text-gray-400">
+          Yes, MyJob is completely free for job seekers. You can browse job listings, submit applications, and create a profile without any cost.
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+          Join us today and take the first step towards your dream career &nbsp;
+            <a href="" className="text-indigo-600 hover:underline dark:text-indigo-500">
+              sign up now&nbsp;
+            </a>
+            on MyJob!
+          </p>
+        </Accordion.Content>
+      </Accordion.Panel>
+
+      <Accordion.Panel>
+        <Accordion.Title>Is MyJob free to use?</Accordion.Title>
+        <Accordion.Content>
+          <p className="mb-2 text-gray-500 dark:text-gray-400">
+          Yes, MyJob is completely free for job seekers. You can browse job listings, submit applications, and create a profile without any cost.
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+          Join us today and take the first step towards your dream career &nbsp;
+            <a href="" className="text-indigo-600 hover:underline dark:text-indigo-500">
+              sign up now&nbsp;
+            </a>
+            on MyJob!
+          </p>
+        </Accordion.Content>
+      </Accordion.Panel>
+
+      <Accordion.Panel>
+        <Accordion.Title>Is MyJob free to use?</Accordion.Title>
+        <Accordion.Content>
+          <p className="mb-2 text-gray-500 dark:text-gray-400">
+          Yes, MyJob is completely free for job seekers. You can browse job listings, submit applications, and create a profile without any cost.
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+          Join us today and take the first step towards your dream career &nbsp;
+            <a href="" className="text-indigo-600 hover:underline dark:text-indigo-500">
+              sign up now&nbsp;
+            </a>
+            on MyJob!
+          </p>
+        </Accordion.Content>
+      </Accordion.Panel>
+
     </Accordion>
     </div>
   );

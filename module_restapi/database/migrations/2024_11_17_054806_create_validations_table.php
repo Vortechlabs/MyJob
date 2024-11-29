@@ -34,7 +34,7 @@ return new class extends Migration
         Schema::create('regionals', function (Blueprint $table) {
             $table->id();
             $table->string('province');
-            $table->string('district');
+            $table->string('regencies');
 
         });
     }

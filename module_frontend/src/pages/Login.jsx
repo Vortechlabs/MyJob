@@ -9,7 +9,7 @@ import { useAuth } from '../components/AuthContext';
 const Login = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const navigate = useNavigate(); 
-    const { setIsLoggedIn, validateToken  } = useAuth(); 
+    const { setIsLoggedIn, setUserData } = useAuth();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,26 +22,21 @@ const Login = () => {
             
             if (response.data.success) {
                 localStorage.setItem('token', response.data.token);
-                
                 setIsLoggedIn(true);
-                
-                await validateToken(response.data.token);
-                
+                setUserData(response.data.data); // Ensure this is defined
                 Swal.fire("Login Successful", "Welcome back!", "success").then(() => {
                     navigate("/"); 
                 });
             } else {
-                Swal.fire("Login Failed", "Email or Password Incorrect", "error");
+                Swal.fire("Login Failed", response.data.message || "Email or Password Incorrect", "error");
             }
         } catch (error) {
-           
-            console.error("Login error:", error); 
+            console.error("Login error:", error); // Log the error for debugging
             if (error.response) {
-                console.log("Response data:", error.response.data); 
                 if (error.response.status === 401) {
                     Swal.fire("Login Failed", "Email or Password Incorrect", "error");
                 } else {
-                    Swal.fire("Login Failed", "An unexpected error occurred.", "error");
+                    Swal.fire("Login Failed", error.response.data.message || "An unexpected error occurred.", "error");
                 }
             } else {
                 Swal.fire("Login Failed", "An unexpected error occurred.", "error");
@@ -81,7 +76,7 @@ const Login = () => {
                             name="password"
                             onChange={handleChange}
                             required
-                            placeholder='********'
+                            placeholder='****'
                             className='ring-1 p-2 text-black text-sm font-light rounded-xl w-full ring-black'
                         />
                     </div>

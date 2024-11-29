@@ -19,8 +19,8 @@ return new class extends Migration
             $table->date('bom_date');
             $table->enum('gender', ['male', 'female']);
             $table->text('address');
-            $table->text('login_tokens');
-            $table->unsignedBigInteger('regional_id');
+            $table->text('province');
+            $table->text('regencies');
         });
     }
 

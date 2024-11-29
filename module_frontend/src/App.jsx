@@ -6,9 +6,7 @@ import Jobs from './pages/Jobs';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Reqruiters from './pages/Reqruiters';
-import Footer from './components/Footer';
 import Register from './pages/Register';
-import Users from './components/UsersTable'
 import UpdateUser from './components/UpdateUser'
 import { AuthProvider } from '../src/components/AuthContext';
 import JobDetails from './pages/JobDetails';
@@ -18,6 +16,7 @@ import User from './pages/admin/User';
 import Dashboard from './pages/admin/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import UserProfile from './pages/UserProfile';
+import FooterSection from './components/Footer';
 
 function App() {
 
@@ -45,7 +44,7 @@ function App() {
           
           <Route path='/Spinner' element={<Spinner />}/>
         </Routes>
-        <Footer />
+        <FooterSection />
       </Router>
       </AuthProvider>
     </>

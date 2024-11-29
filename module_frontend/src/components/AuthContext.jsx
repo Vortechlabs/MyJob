@@ -13,67 +13,71 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem('token'); 
+        const storedUserData = localStorage.getItem('userData'); // Get user data from local storage
+
         if (token) {
             validateToken(token);
         }
+
+        if (storedUserData) {
+            setUserData(JSON.parse(storedUserData)); // Set user data from local storage
+            setIsLoggedIn(true); // Set logged in state
+        }
     }, []);
 
-   
-const validateToken = async (token) => {
-    try {
-        const response = await fetch('http://127.0.0.1:8000/api/Validators', {
-            method: 'GET', 
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        });
-
-        const contentType = response.headers.get("content-type");
-        let data;
-
-        if (contentType && contentType.includes("application/json")) {
-            data = await response.json();
-        } else {
-            throw new Error("Response is not JSON");
-        }
-
-        console.log("API Response:", data);
-
-        if (response.ok) {
-            // Data yang didapat dari server
-            if (Array.isArray(data.data) && data.data.length > 0) {
-                setIsLoggedIn(true);
-                setUserData(data.data[1]); // Mengambil data yang tepat
+    const validateToken = async (token) => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/Societies', {
+                method: 'GET', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
+            const contentType = response.headers.get("content-type");
+            let data;
+    
+            if (contentType && contentType.includes("application/json")) {
+                data = await response.json();
             } else {
-                throw new Error("Invalid data structure");
+                throw new Error("Response is not JSON");
             }
-        } else {
-            setIsLoggedIn(false);
-            setUserData(null);
+    
+            console.log("API Response:", data); 
+    
+            if (response.ok) {
+                setIsLoggedIn(true);
+                setUserData(data.data[0]); 
+            } else {
+                setIsLoggedIn(false);
+                setUserData(null);
+                localStorage.removeItem('userData'); 
+                Swal.fire({
+                    title: 'Invalid Token',
+                    text: data.message || 'Token is invalid or expired.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                navigate('/Login');
+            }
+        } catch (error) {
+            console.error("Error validating token:", error);
             Swal.fire({
-                title: 'Invalid Token',
-                text: data.message || 'Token is invalid or expired.',
+                title: 'Error',
+                text: 'An error occurred while validating the token.',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
             navigate('/Login');
         }
-    } catch (error) {
-        console.error("Error validating token:", error);
-        Swal.fire({
-            title: 'Error',
-            text: 'An error occurred while validating the token.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        navigate('/Login');
-    }
-};
+    };
 
     const login = (userData) => {
         setIsLoggedIn(true);
         setUserData(userData);
+        localStorage.setItem('token', userData.token); // Store token in local storage
+        localStorage.setItem('userData', JSON.stringify(userData)); // Store user data in local storage
     };
 
     const logout = () => {
@@ -89,7 +93,7 @@ const validateToken = async (token) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, userData, login, logout, setIsLoggedIn, validateToken }}>
+        <AuthContext.Provider value={{ isLoggedIn, userData, login, logout, setIsLoggedIn, setUserData }}>
             {children}
         </AuthContext.Provider>
     );

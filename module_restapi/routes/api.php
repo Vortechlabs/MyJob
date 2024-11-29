@@ -4,11 +4,15 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\SocietiesController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\JobController;
 use App\Http\Controllers\API\ValidatorsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ProvinceController;
+use App\Http\Controllers\API\RegencyController;
+
 
 
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
@@ -22,6 +26,9 @@ Route::get('/Jobs/{id}', [JobController::class, 'show']);
 Route::get('/Jobs/{id}', [JobController::class, 'show']);
 Route::get('/JobCategories', [CategoryController::class, 'index']);
 Route::get('/Validators', [ValidatorsController::class, 'index']);
+Route::get('/Societies', [SocietiesController::class, 'index']);
+Route::get('/provinces', [ProvinceController::class, 'index']);
+Route::get('/provinces/{id}/regencies', [RegencyController::class, 'index']);
 
 
 Route::get('/user', function (Request $request) {

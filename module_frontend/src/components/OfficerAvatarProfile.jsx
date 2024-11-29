@@ -23,7 +23,7 @@ export function UserAvatarProfile() {
       <Dropdown.Header>
         <span className="block text-sm">{userData ? userData.name : "Guest"}</span>
         <span className="block truncate text-sm font-medium">
-        {userData ? userData.validators.email : "No email"} 
+          {userData ? userData.email : "No email"} 
         </span>
       </Dropdown.Header>
       <Dropdown.Item style={{ backgroundColor: 'transparent'}}>

@@ -2,41 +2,62 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Validators;
+use App\Models\societies;
 use Auth;
-use Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Validator;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
+    public function register(Request $request) {
         \Log::info('Registration request:', $request->all());
+    
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required',
-            'confirm_password' => 'required|same:password'
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'bom_date' => 'required|date',
+            'gender' => 'required|string',
+            'province_id' => 'required|exists:reg_provinces,id',
+            'regency_id' => 'required|exists:reg_regencies,id',
+            'address' => 'required|string|max:255',
         ]);
-
-        if ($validator->fails()){
+    
+        if ($validator->fails()) {
             return response()->json([
-                'success'=> false,
+                'success' => false,
                 'message' => 'Validation Error',
                 'data' => $validator->errors()
             ]);
         }
-
+    
         try {
-            $input = $request->all();
-            $input['password'] = bcrypt($request->input('password'));
-            
-            $user = User::create($input);
-
+            // Create the user
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'bom_date' => $request->bom_date,
+                'gender' => $request->gender,
+            ]);
+    
+            // Create the society entry
+            societies::create([
+                'id_card_number' => $user->id, // Assuming you want to use the user's ID as the id_card_number
+                'password' => bcrypt($request->password), // Consider removing this if you don't want to store passwords in the societies table
+                'name' => $request->name,
+                'bom_date' => $request->bom_date,
+                'gender' => $request->gender,
+                'address' => $request->address,
+                'province' => $request->province_id, // Store the province_id
+                'regencies' => $request->regency_id, // Store the regency_id
+            ]);
+    
+            // Generate and return the token for the user
             $success['token'] = $user->createToken('auth_token')->plainTextToken;
             $success['name'] = $user->name;
-
+    
             return response()->json([
                 'success' => true,
                 'message'=> 'Success Register',
@@ -52,70 +73,60 @@ class AuthController extends Controller
         }
     }
 
-    public function login(Request $request) {
+    public function login(Request $request){
         \Log::info('Login attempt:', $request->only('email', 'password'));
     
-        $user = User::where('email', $request->email)->first();
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $user = Auth::user();
+            $society = societies::where('id_card_number', $user->id)->first(); // Assuming id_card_number is unique
     
-        if ($user) {
-            \Log::info('User  found: ', ['email' => $user->email]);
-            \Log::info('Password from request: ', ['password' => $request->password]);
-            \Log::info('Hashed password from DB: ', ['hashed_password' => $user->password]);
-            \Log::info('User found: ', ['email' => $user->email]);
+            // Fetch province and regency names
+            $provinceName = ''; // Fetch province name based on society's province ID
+            $regencyName = ''; // Fetch regency name based on society's regency ID
     
-            if (Hash::check($request->password, $user->password)) {
-                $validator = Validators::where('user_id', $user->id)->first();
+            if ($society) {
+                $province = \DB::table('reg_provinces')->where('id', $society->province)->first();
+                $regency = \DB::table('reg_regencies')->where('id', $society->regencies)->first();
     
-                if ($validator) {
-                    Auth::login($user);
-                    $auth = Auth::user();
-                    $success['token'] = $auth->createToken('auth_token')->plainTextToken;
-                    $success['name'] = $auth->name;
-                    $success['email'] = $auth->email;
-                    $success['role'] = $validator->role;
-    
-                    return response()->json([
-                        'success' => true,
-                        'message' => 'Login Successful',
-                        'data'=> $success
-                    ]);
-                } else {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'User not authorized',
-                        'data'=> null
-                    ]);
-                }
-            } else {
-                \Log::warning('Password mismatch for user: ', ['email' => $user->email]);
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Invalid Email or Password',
-                    'data'=> null
-                ]);
+                $provinceName = $province ? $province->name : 'Unknown';
+                $regencyName = $regency ? $regency->name : 'Unknown';
             }
-        } else {
-            \Log::warning('User not found: ', ['email' => $request->email]);
+    
+            $token = $user->createToken('YourAppName')->plainTextToken;
+    
             return response()->json([
-                'success' => false,
-                'message' => 'Invalid Email or Password',
-                'data'=> null
+                'success' => true,
+                'token' => $token,
+                'data' => [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'id_card_number' => $society->id_card_number,
+                    'bom_date' => $society->bom_date,
+                    'gender' => $society->gender,
+                    'address' => $society->address,
+                    'province' => $provinceName,
+                    'regencies' => $regencyName,
+                ],
             ]);
-        }
+        }   
+        return response()->json(['success' => false, 'message' => 'Invalid credentials'], 401);
     }
 
     public function update(Request $request, $id)
     {
+        // Validasi input
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $id,
         ]);
 
+        // Temukan pengguna berdasarkan ID
         $user = User::find($id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
 
+        // Update data pengguna
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();

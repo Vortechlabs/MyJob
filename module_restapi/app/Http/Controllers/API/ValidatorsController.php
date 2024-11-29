@@ -13,3 +13,4 @@ class ValidatorsController extends Controller
         return response()->json($validator);
     }
 }
+
