@@ -13,7 +13,7 @@ const Register = () => {
         bom_date: "",
         gender: "",
         province_id: "",
-        regency_id: "",
+        regency_id: "", 
         address: "",
     });
 
