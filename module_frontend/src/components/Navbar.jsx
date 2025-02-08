@@ -18,8 +18,8 @@ export const Navbar = () => {
 };
 
   return (
-    <nav className='fixed top-0 left-0 right-0 bg-transparent backdrop-blur-3xl shadow z-50 flex justify-between items-center p-6'>
-      <div className='flex h-7 gap-2'>
+    <nav className='fixed w-screen bg-transparent backdrop-blur-3xl shadow z-50 flex justify-between items-center p-6'>
+      <div className='flex h-7 gap-2 '>
         <img src={logo} alt="logo" />
         <h1 className='text-2xl font-medium flex items-center'>MyJob</h1>
       </div>
@@ -74,7 +74,7 @@ export const Navbar = () => {
             className={({ isActive }) => 
               isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'
             }
-          >
+          >   
             Home
           </NavLink>
           <NavLink

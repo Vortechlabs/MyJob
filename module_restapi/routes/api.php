@@ -23,7 +23,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('createjob', [JobController::class,'create']);
 Route::get('/Jobs', [JobController::class, 'index']);
 Route::get('/Jobs/{id}', [JobController::class, 'show']);
-Route::get('/Jobs/{id}', [JobController::class, 'show']);
+Route::delete('/Jobs/{id}', [JobController::class, 'destroy']);
 Route::get('/JobCategories', [CategoryController::class, 'index']);
 Route::get('/Validators', [ValidatorsController::class, 'index']);
 Route::get('/Societies', [SocietiesController::class, 'index']);

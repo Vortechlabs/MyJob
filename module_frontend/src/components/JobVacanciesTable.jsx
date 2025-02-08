@@ -63,7 +63,7 @@ function JobCard() {
 
         if (result.isConfirmed) {
             try {
-                const response = await fetch(`http://localhost:8000/Jobs/${id}`, {
+                const response = await fetch(`http://localhost:8000/api/Jobs/${id}`, {
                     method: 'DELETE',
                 });
 
@@ -111,23 +111,23 @@ function JobCard() {
                             {jobVacancies.map(items => (
                                 <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800" key={items.id}>
                                     <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                    <img className="rounded-lg min-h-20 max-h-20 min-w-20 max-w-20 object-cover"  src={`http://localhost:8000/fotocompany/${items.foto}`} alt={items.title} />
+                                        <img className="rounded-lg min-h-20 max-h-20 min-w-20 max-w-20 object-cover" src={`http://localhost:8000/fotocompany/${items.foto}`} alt={items.title} />
                                     </TableCell>
                                     <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {truncateText(items.title, 10)}
+                                        {truncateText(items.title || '', 10)}
                                     </TableCell>
-                                    <TableCell>{truncateText(items.company, 10)}</TableCell>
-                                    <TableCell>{truncateText(items.description, 20)}</TableCell>
-                                    <TableCell>{truncateText(items.category.job_category, 10)}</TableCell>
+                                    <TableCell>{truncateText(items.company || '', 10)}</TableCell>
+                                    <TableCell>{truncateText(items.description || '', 20)}</TableCell>
+                                    <TableCell>{truncateText(items.category?.job_category || '', 10)}</TableCell>
                                     <TableCell>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(items.salary)}</TableCell>
-                                    <TableCell>{truncateText(items.address, 10)}</TableCell>
+                                    <TableCell>{truncateText(items.address || '', 10)}</TableCell>
                                     <TableCell>{formatDateTime(items.created_at)}</TableCell>
                                     <TableCell>
                                         <Link to={`/UpdateJob/${items.id}`} className="font-medium text-indigo-600 hover:underline dark:text-indigo-500">
                                             Edit
                                         </Link>
                                         <button 
-                                        onClick={() => handleDelete(items.id)} 
+                                            onClick={() => handleDelete(items.id)} 
                                             className="font-medium text-red-600 hover:underline dark:text-white ml-2 dark:bg-red-600"
                                         >
                                             Delete

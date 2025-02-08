@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <>
       <section className="relative z-10 overflow-hidden  py-20 px-20 dark:bg-dark lg:py-[120px]">
-        <div className="container">
+        <div className="container flex justify-center">
           <div className="-mx-4 flex flex-wrap lg:justify-between">
             <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
               <div className="mb-12 max-w-[570px] lg:mb-0">
@@ -110,8 +110,8 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-              <div className="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12">
+            <div className="px-4 lg:w-1/2 xl:w-5/12">
+              <div className="relative rounded-lg w-[150%] bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12">
                 <form>
                   <ContactInputBox
                     type="text"
@@ -137,7 +137,7 @@ const Contact = () => {
                   <div>
                     <button
                       type="submit"
-                      className="w-full rounded border border-primary bg-primary p-3 text-white transition hover:bg-opacity-90"
+                      className="w-full rounded border border-primary bg-primary p-3 text-indigo-700 transition hover:bg-opacity-90"
                     >
                       Send Message
                     </button>

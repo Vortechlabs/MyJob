@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 
-class JobController extends Controller
+class  JobController extends Controller
 {
     public function index() {
         $jobs = JobVacancy::with(['category', 'availablePositions'])->latest()->paginate();
@@ -60,6 +60,30 @@ class JobController extends Controller
         $availablePosition->save(); 
     
         return response()->json(['success' => true, 'data' => $jobVacancy], 201);
+    }
+
+    public function destroy($id)
+    {
+        \Log::info("Attempting to delete job with ID: $id");
+        
+        $jobVacancy = JobVacancy::find($id);
+        if (!$jobVacancy) {
+            \Log::warning("Job with ID: $id not found");
+            return response()->json(['message' => 'Job not found'], 404);
+        }
+    
+        try {
+            // Delete related available positions
+            $jobVacancy->availablePositions()->delete(); // Assuming you have a relationship defined
+    
+            // Now delete the job vacancy
+            $jobVacancy->delete();
+            \Log::info("Job with ID: $id deleted successfully");
+            return response()->json(['message' => 'Job deleted successfully'], 200);
+        } catch (\Exception $e) {
+            \Log::error("Error deleting job with ID: $id - " . $e->getMessage());
+            return response()->json(['message' => 'Error deleting job'], 500);
+        }
     }
     
     /*public function add(Request $request){

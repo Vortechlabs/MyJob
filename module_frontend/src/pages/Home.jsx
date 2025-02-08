@@ -68,7 +68,7 @@ function Home() {
               
               <img src={services} alt="avatar" className='rounded-s-lg ring-gray-400 h-24 w-24 object-cover'/>
               <div>
-                <h6 >Services</h6>
+                <h6>Services</h6>
                 <p className="font-normal text-xs ">
                   33+ available
                 </p>

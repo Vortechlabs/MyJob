@@ -87,7 +87,7 @@ const Register = () => {
         <main>
             <div className='flex shadow-2xl rounded-2xl'>
                 <div>
-                    <img src={wl} alt="hero-login-image" className='max-h-[38rem] rounded-l-2xl hidden lg:block' />
+                    <img src={wl} alt="hero-login-image" className='max-h-[41rem] rounded-l-2xl hidden lg:block' />
                 </div>
                 <div className='p-8 flex content-center items-center'>
                     <div>
