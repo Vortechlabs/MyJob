@@ -90,7 +90,7 @@ export const Navbar = () => {
             className={({ isActive }) => 
               isActive ? 'text-indigo-600' : 'text-black dark:text-white hover:text-indigo-600'
             }
-          >
+          > 
             Reqruiters
           </NavLink>
           <NavLink

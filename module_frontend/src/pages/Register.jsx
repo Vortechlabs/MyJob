@@ -23,7 +23,7 @@ const Register = () => {
     useEffect(() => {
         const fetchProvinces = async () => {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/provinces");
+                const response = await axios.get("http://127.0.0.1:8000/api/v1/provinces");
                 setProvinces(response.data);
             } catch (error) {
                 console.error("Error fetching provinces:", error);
@@ -39,7 +39,7 @@ const Register = () => {
 
         if (provinceId) {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/provinces/${provinceId}/regencies`);
+                const response = await axios.get(`http://127.0.0.1:8000/api/v1/provinces/${provinceId}/regencies`);
                 setRegencies(response.data);
             } catch (error) {
                 console.error("Error fetching regencies:", error);
@@ -56,7 +56,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const userResponse = await axios.post("http://127.0.0.1:8000/api/register", {
+            const userResponse = await axios.post("http://127.0.0.1:8000/api/v1/register", {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,

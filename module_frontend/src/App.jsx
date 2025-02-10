@@ -17,6 +17,7 @@ import Dashboard from './pages/admin/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import UserProfile from './pages/UserProfile';
 import FooterSection from './components/Footer';
+import JobCategories from './components/JobCategories';
 
 function App() {
 
@@ -40,6 +41,8 @@ function App() {
           <Route path='AdminPanel' element={<ProtectedRoute element={<Dashboard/>} />} />
           <Route path='UserData' element={<ProtectedRoute element={<User/>} />} />
           <Route path='UserProfile' element={<UserProfile />}/>
+          <Route path='test' element={<JobCategories />}/>
+
 
           
           <Route path='/Spinner' element={<Spinner />}/>

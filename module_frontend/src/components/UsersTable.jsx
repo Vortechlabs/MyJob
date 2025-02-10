@@ -51,7 +51,7 @@ export default class Users extends React.Component {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://127.0.0.1:8000/api/users/${id}`)
+                axios.delete(`http://127.0.0.1:8000/api/v1/users/${id}`)
                     .then(response => {
                         console.log('User  deleted:', response.data);
                         this.setState(prevState => ({

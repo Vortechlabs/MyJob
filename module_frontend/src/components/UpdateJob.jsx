@@ -6,7 +6,7 @@ function UpdateJob({ jobId, onUpdate }) {
 
     useEffect(() => {
         const fetchJob = async () => {
-            const response = await fetch(`http://localhost:8000/api/job/${jobId}`);
+            const response = await fetch(`http://localhost:8000/api/v1/job/${jobId}`);
             const data = await response.json();
             setJob(data);
             setLoading(false);
@@ -22,7 +22,7 @@ function UpdateJob({ jobId, onUpdate }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:8000/api/job/${jobId}`, {
+        const response = await fetch(`http://localhost:8000/api/v1/job/${jobId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

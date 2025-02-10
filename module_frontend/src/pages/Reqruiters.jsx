@@ -23,7 +23,7 @@ function Reqruiters() {
   useEffect(() => {
     const fetchJobCategories = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/JobCategories");
+        const response = await axios.get("http://127.0.0.1:8000/api/v1/JobCategories");
         console.log(response.data);
 
         if (response.data && response.data.success) {
@@ -76,7 +76,7 @@ function Reqruiters() {
     data.append('capacity', formData.capacity);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/createjob", data, {
+      const response = await axios.post("http://127.0.0.1:8000/api/v1/createjob", data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

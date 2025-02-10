@@ -63,7 +63,7 @@ function JobCard() {
 
         if (result.isConfirmed) {
             try {
-                const response = await fetch(`http://localhost:8000/api/Jobs/${id}`, {
+                const response = await fetch(`http://localhost:8000/api/v1/Jobs/${id}`, {
                     method: 'DELETE',
                 });
 

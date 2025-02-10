@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
     const validateToken = async (token) => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/Societies', {
+            const response = await fetch('http://127.0.0.1:8000/api/v1/Societies', {
                 method: 'GET', 
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,8 +76,8 @@ export const AuthProvider = ({ children }) => {
     const login = (userData) => {
         setIsLoggedIn(true);
         setUserData(userData);
-        localStorage.setItem('token', userData.token); // Store token in local storage
-        localStorage.setItem('userData', JSON.stringify(userData)); // Store user data in local storage
+        localStorage.setItem('token', userData.token); 
+        localStorage.setItem('userData', JSON.stringify(userData)); 
     };
 
     const logout = () => {

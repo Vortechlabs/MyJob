@@ -11,7 +11,7 @@ function JobDetails() {
     useEffect(() => {
         const fetchJobVacancy = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/api/Jobs/${id}`); 
+                const response = await fetch(`http://localhost:8000/api/v1/Jobs/${id}`); 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
